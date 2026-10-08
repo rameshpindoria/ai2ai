@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block nav %}<span class="who">{{ user.name }} · {{ org.name }} · {{ user.role.replace("_", " ") }}</span><button id="logout" data-csrf="{{ csrf }}">Sign out</button>{% endblock %}
+{% block content %}
+<div id="dash" data-kind="{{ org.kind }}" data-role="{{ user.role }}" data-csrf="{{ csrf }}" class="stack">
+  <section class="card">
+    <h1>{{ org.name }}</h1>
+    <p class="muted">{{ org.kind|capitalize }} organisation · {{ org.status }}</p>
+  </section>
+
+  {% if org.kind == "customer" %}
+  <section class="card">
+    <h2>Get an IT issue fixed</h2>
+    <p class="muted">Describe the problem in your own words. You'll choose a verified provider; the details you type next stay on your own edge, never on this platform.</p>
+    <form id="match-form" class="row-form">
+      <label for="q" class="sr">Describe the issue</label>
+      <input id="q" name="q" placeholder="e.g. Nobody can print, jobs are stuck in the queue" required>
+      <select id="match-level" aria-label="Level"><option value="D2">Fix it (each change approved by you)</option><option value="D1">Diagnose only (read-only)</option></select>
+      <button class="primary" type="submit">Find providers</button>
+    </form>
+    <p class="muted" id="match-cats"></p>
+    <ul class="list" id="matches"></ul>
+  </section>
+  <section class="card">
+    <h2>Your edge</h2>
+    <p class="muted" id="edge-status">Checking…</p>
+    {% if user.role == "customer_admin" %}
+    <form id="edge-form" class="form" hidden>
+      <label for="edge-url">Edge address</label><input id="edge-url" placeholder="http://localhost:8810" required>
+      <label for="edge-key">Edge broker public key (from the edge's /edge/.well-known/keys)</label><input id="edge-key" required>
+      <button type="submit">Register edge</button>
+    </form>
+    {% endif %}
+  </section>
+  <section class="card"><h2>Recent jobs</h2><ul class="list" id="cust-jobs"></ul></section>
+
+  {% elif org.kind == "provider" %}
+  <section class="card">
+    <h2>Verification</h2>
+    <p id="prov-status" class="muted">Loading…</p>
+    <h3>Evidence</h3><ul class="list" id="evidence"></ul>
+    <form id="evidence-form" class="row-form">
+      <select id="ev-kind" aria-label="Evidence type"><option>ISO27001</option><option>SOC2</option><option>CyberEssentials</option><option>PIInsurance</option><option>CyberInsurance</option></select>
+      <input id="ev-ref" placeholder="Certificate or policy number" aria-label="Reference" required>
+      <input id="ev-issuer" placeholder="Issuer" aria-label="Issuer" required>
+      <input id="ev-exp" type="date" aria-label="Expires" required>
+      <button type="submit">Add evidence</button>
+    </form>
+    <h3>Public keys</h3><p class="muted">Generate keys with your own tooling (<code>provider-keys</code>). Only public keys are ever registered here.</p>
+    <ul class="list" id="keys"></ul>
+    <form id="key-form" class="row-form">
+      <select id="key-purpose" aria-label="Key purpose"><option value="org">organisation</option><option value="agent">agent</option><option value="technician">technician</option></select>
+      <input id="key-pub" placeholder="base64url public key" aria-label="Public key" required>
+      <button type="submit">Register key</button>
+    </form>
+    <button id="submit-review" class="primary">Submit for verification</button>
+  </section>
+  <section class="card">
+    <h2>Agents</h2><p class="muted">Your agent stays on your systems. Register its card, signed with your organisation key.</p>
+    <ul class="list" id="agents"></ul>
+    <form id="agent-form" class="form"><label for="card-json">Signed agent card (JSON)</label><textarea id="card-json" rows="5" required></textarea><button type="submit">Register agent</button></form>
+  </section>
+  <section class="card">
+    <h2>Services</h2><ul class="list" id="services"></ul>
+    <form id="service-form" class="row-form">
+      <select id="svc-agent" aria-label="Agent"></select>
+      <input id="svc-title" placeholder="Title" aria-label="Title" required>
+      <input id="svc-cat" placeholder="it.printing" aria-label="Category" required>
+      <select id="svc-level" aria-label="Level"><option>D1</option><option selected>D2</option></select>
+      <input id="svc-price" placeholder="Indicative price" aria-label="Price">
+      <button type="submit">Add service</button>
+    </form>
+  </section>
+  <section class="card"><h2>Usage</h2><ul class="list" id="usage"></ul></section>
+
+  {% else %}
+  <section class="card"><h2>Providers awaiting verification</h2><ul class="list" id="pending-providers"></ul></section>
+  <section class="card"><h2>Organisations</h2><ul class="list" id="orgs"></ul></section>
+  <section class="card"><h2>Usage</h2><ul class="list" id="admin-usage"></ul></section>
+  <section class="card"><h2>Audit trail</h2><p id="audit-status" class="muted"></p></section>
+  {% endif %}
+  <p class="error" id="dash-error" role="alert"></p>
+</div>
+{% endblock %}

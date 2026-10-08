@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block nav %}<span class="who">{{ user.name }} · {{ user.role.replace("_", " ") }}</span>{% endblock %}
+{% block content %}
+<section class="card" id="jobs-page" data-csrf="{{ csrf }}">
+  <h1>Jobs</h1>
+  <p class="muted">Pick a verified provider on the AI2AI marketplace, then describe the issue here. Everything you type stays on this edge.</p>
+  <ul class="list" id="jobs"></ul>
+  <p class="error" id="form-error" role="alert"></p>
+</section>
+{% endblock %}

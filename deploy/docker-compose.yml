@@ -1,0 +1,58 @@
+# Cloud-ready layout. Not yet tested under Docker; the same commands run locally without Docker.
+# In production each role runs in a DIFFERENT place: the centre (platform operator), each customer's edge
+# (customer's infrastructure), each provider runtime (provider's infrastructure). This file puts them together
+# only for a staging test. Put TLS in front of every port (a reverse proxy) and set AI2AI_HTTPS=1.
+services:
+  centre-db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ai2ai
+      POSTGRES_PASSWORD: ${CENTRE_DB_PASSWORD:?set CENTRE_DB_PASSWORD}
+      POSTGRES_DB: centre
+    volumes: [centre-db:/var/lib/postgresql/data]
+
+  centre:
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    command: ["python", "-m", "ai2ai_platform.cli", "serve-centre", "--port", "8800"]
+    environment:
+      AI2AI_DATABASE_URL: postgresql+psycopg://ai2ai:${CENTRE_DB_PASSWORD}@centre-db:5432/centre
+      AI2AI_BASE_URL: ${CENTRE_PUBLIC_URL:?set CENTRE_PUBLIC_URL}
+      AI2AI_HTTPS: "1"
+      AI2AI_MASTER_KEY: ${CENTRE_MASTER_KEY:?set CENTRE_MASTER_KEY}
+      AI2AI_BIND_HOST: 0.0.0.0
+    volumes: [centre-data:/data]
+    ports: ["8800:8800"]
+    depends_on: [centre-db]
+
+  edge-db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: edge
+      POSTGRES_PASSWORD: ${EDGE_DB_PASSWORD:?set EDGE_DB_PASSWORD}
+      POSTGRES_DB: edge
+    volumes: [edge-db:/var/lib/postgresql/data]
+
+  edge:
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    # run `edge-init` once against this volume first (it pins the centre's key)
+    command: ["python", "-m", "ai2ai_platform.cli", "serve-edge", "--data-dir", "/data"]
+    environment:
+      AI2AI_MASTER_KEY: ${EDGE_MASTER_KEY:?set EDGE_MASTER_KEY}
+      AI2AI_EDGE_DATABASE_URL: postgresql+psycopg://edge:${EDGE_DB_PASSWORD}@edge-db:5432/edge
+      AI2AI_BIND_HOST: 0.0.0.0
+      AI2AI_HTTPS: "1"
+    volumes: [edge-data:/data]
+    ports: ["8810:8810"]
+    depends_on: [edge-db, centre]
+
+  provider-b:
+    build: {context: .., dockerfile: deploy/Dockerfile}
+    command: ["python", "-m", "ai2ai_platform.cli", "run-provider", "--keys-dir", "/data", "--centre-url",
+              "${CENTRE_PUBLIC_URL}", "--agent", "rulebook", "--agent-id", "${PROVIDER_AGENT_ID:?set PROVIDER_AGENT_ID}",
+              "--loop", "--interval", "2"]
+    environment:
+      AI2AI_MASTER_KEY: ${PROVIDER_MASTER_KEY:?set PROVIDER_MASTER_KEY}
+    volumes: [provider-keys:/data]
+    depends_on: [centre]
+
+volumes: {centre-db: {}, centre-data: {}, edge-db: {}, edge-data: {}, provider-keys: {}}

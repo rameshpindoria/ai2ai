@@ -1,0 +1,11 @@
+/* Edge additions: the signed-stamp colour marks every human approval. */
+button.stamp{background:var(--stamp);border-color:var(--stamp);color:#fff}
+.approval{border:2px solid var(--stamp)}
+.head-row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 16px;margin:8px 0}
+.kv dt{color:var(--muted)}.kv dd{margin:0;overflow-wrap:anywhere}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:.82rem}
+ol.log{margin:0;padding-left:2.6em;display:grid;gap:3px;font:12px/1.4 ui-monospace,Consolas,monospace;max-height:360px;overflow:auto}
+ol.log li{overflow-wrap:anywhere}
+ol.log li.deny{color:var(--stamp)}
+ol.log li.allow{color:var(--accent)}

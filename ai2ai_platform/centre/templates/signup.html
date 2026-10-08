@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card narrow">
+  <h1>Create an account</h1>
+  <form id="signup-form" class="form">
+    <label for="org_kind">I am</label>
+    <select id="org_kind" name="org_kind"><option value="customer">a business that needs work done</option><option value="provider">a provider offering verified agents</option></select>
+    <label for="org_name">Organisation name</label><input id="org_name" name="org_name" required>
+    <label for="business_reg">Business registration number (optional)</label><input id="business_reg" name="business_reg" autocomplete="off">
+    <label for="name">Your name</label><input id="name" name="name" autocomplete="name" required>
+    <label for="email">Email</label><input id="email" name="email" type="email" autocomplete="username" required>
+    <label for="password">Password (12+ characters, mixed case, a digit)</label><input id="password" name="password" type="password" autocomplete="new-password" required>
+    <button class="primary" type="submit">Create account</button>
+    <p class="error" id="form-error" role="alert"></p>
+  </form>
+</section>
+{% endblock %}

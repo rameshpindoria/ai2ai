@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 1064" role="img" aria-label="One AI2AI job end to end: the customer approves the Work Order and every change with a passkey on their own edge; the provider's agent talks directly to the edge with signed requests and short-lived tokens; the centre only ever sees signed metadata." font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="12">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#57606a"/></marker>
+    <marker id="h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8250df"/></marker>
+    <marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#cf222e"/></marker>
+  </defs>
+  <rect x="0" y="0" width="940" height="1064" rx="12" fill="#ffffff"/>
+
+  <!-- ownership boundaries -->
+  <g fill="#57606a" font-size="11" text-anchor="middle">
+    <text x="110" y="24">platform operator</text>
+    <text x="450" y="24">customer's own infrastructure</text>
+    <text x="820" y="24">provider's own infrastructure</text>
+  </g>
+  <g stroke="#d0d7de" stroke-dasharray="2 4">
+    <line x1="220" y1="12" x2="220" y2="990"/>
+    <line x1="695" y1="12" x2="695" y2="990"/>
+  </g>
+
+  <!-- participants -->
+  <g fill="#f6f8fa" stroke="#57606a">
+    <rect x="35" y="40" width="150" height="40" rx="6"/>
+    <rect x="255" y="40" width="150" height="40" rx="6"/>
+    <rect x="495" y="40" width="150" height="40" rx="6"/>
+    <rect x="745" y="40" width="150" height="40" rx="6"/>
+  </g>
+  <g fill="#1f2328" font-size="13" font-weight="600" text-anchor="middle">
+    <text x="110" y="65">Centre</text>
+    <text x="330" y="65">Customer (person)</text>
+    <text x="570" y="65">Customer edge</text>
+    <text x="820" y="65">Provider's agent</text>
+  </g>
+  <g stroke="#8c959f" stroke-dasharray="4 4">
+    <line x1="110" y1="80" x2="110" y2="990"/>
+    <line x1="330" y1="80" x2="330" y2="990"/>
+    <line x1="570" y1="80" x2="570" y2="990"/>
+    <line x1="820" y1="80" x2="820" y2="990"/>
+  </g>
+
+  <!-- messages: solid = signed request, dashed = response -->
+  <g stroke="#57606a" stroke-width="1.5" fill="none">
+    <line x1="326" y1="124" x2="114" y2="124" marker-end="url(#a)"/>
+    <line x1="114" y1="168" x2="326" y2="168" marker-end="url(#a)" stroke-dasharray="5 4"/>
+    <line x1="334" y1="212" x2="566" y2="212" marker-end="url(#a)"/>
+    <line x1="566" y1="344" x2="114" y2="344" marker-end="url(#a)"/>
+    <line x1="816" y1="388" x2="114" y2="388" marker-end="url(#a)"/>
+    <line x1="114" y1="432" x2="816" y2="432" marker-end="url(#a)" stroke-dasharray="5 4"/>
+    <line x1="816" y1="476" x2="574" y2="476" marker-end="url(#a)"/>
+    <line x1="574" y1="520" x2="816" y2="520" marker-end="url(#a)" stroke-dasharray="5 4"/>
+    <line x1="816" y1="564" x2="574" y2="564" marker-end="url(#a)"/>
+    <line x1="574" y1="608" x2="816" y2="608" marker-end="url(#a)" stroke-dasharray="5 4"/>
+    <line x1="816" y1="652" x2="574" y2="652" marker-end="url(#a)"/>
+    <line x1="816" y1="828" x2="574" y2="828" marker-end="url(#a)"/>
+    <line x1="574" y1="872" x2="816" y2="872" marker-end="url(#a)" stroke-dasharray="5 4"/>
+    <line x1="566" y1="916" x2="114" y2="916" marker-end="url(#a)"/>
+  </g>
+  <!-- human passkey approvals -->
+  <g stroke="#8250df" stroke-width="2.5" fill="none">
+    <line x1="334" y1="300" x2="566" y2="300" marker-end="url(#h)"/>
+    <line x1="566" y1="696" x2="334" y2="696" marker-end="url(#h)" stroke-dasharray="5 4"/>
+    <line x1="334" y1="740" x2="566" y2="740" marker-end="url(#h)"/>
+  </g>
+  <!-- customer override -->
+  <line x1="334" y1="960" x2="566" y2="960" stroke="#cf222e" stroke-width="2.5" marker-end="url(#k)"/>
+
+  <!-- edge-side checks -->
+  <g fill="#fff8c5" stroke="#d4a72c">
+    <rect x="440" y="242" width="260" height="28" rx="14"/>
+    <rect x="440" y="770" width="260" height="28" rx="14"/>
+  </g>
+  <g fill="#1f2328" text-anchor="middle">
+    <text x="570" y="260">verify listing: centre key + revocations</text>
+    <text x="570" y="788">snapshot → apply → check, auto-rollback</text>
+  </g>
+
+  <!-- labels (white halo so they read across lifelines) -->
+  <g fill="#1f2328" text-anchor="middle" stroke="#ffffff" stroke-width="4" paint-order="stroke">
+    <text x="220" y="117">1  describe problem, pick a provider</text>
+    <text x="220" y="161">signed listing (verified provider)</text>
+    <text x="450" y="205">2  draft Work Order</text>
+    <text x="340" y="337">4  job notice — metadata only, signed</text>
+    <text x="465" y="381">5  poll for jobs (org key)</text>
+    <text x="465" y="425">job id + edge address</text>
+    <text x="695" y="469">6  token request (agent key)</text>
+    <text x="695" y="513">5-min token; revocation re-checked</text>
+    <text x="695" y="557">7  read (signed, nonce)</text>
+    <text x="695" y="601">data, wrapped as untrusted</text>
+    <text x="695" y="645">8  request change</text>
+    <text x="695" y="821">9  complete</text>
+    <text x="695" y="865">signed receipt</text>
+    <text x="340" y="909">10  outcome — metadata only</text>
+  </g>
+  <g fill="#8250df" font-weight="600" text-anchor="middle" stroke="#ffffff" stroke-width="4" paint-order="stroke">
+    <text x="450" y="293">3  approve Work Order (passkey)</text>
+    <text x="450" y="689">approve this exact change?</text>
+    <text x="450" y="733">passkey approval, single use</text>
+  </g>
+  <text x="450" y="953" fill="#cf222e" font-weight="600" text-anchor="middle" stroke="#ffffff" stroke-width="4" paint-order="stroke">kill switch / undo — any time</text>
+
+  <!-- legend -->
+  <g font-size="11" fill="#57606a">
+    <line x1="40" y1="1015" x2="70" y2="1015" stroke="#57606a" stroke-width="1.5"/>
+    <text x="78" y="1019">signed request</text>
+    <line x1="180" y1="1015" x2="210" y2="1015" stroke="#57606a" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="218" y="1019">response</text>
+    <line x1="300" y1="1015" x2="330" y2="1015" stroke="#8250df" stroke-width="2.5"/>
+    <text x="338" y="1019">human approval by passkey</text>
+    <line x1="510" y1="1015" x2="540" y2="1015" stroke="#cf222e" stroke-width="2.5"/>
+    <text x="548" y="1019">customer override</text>
+    <text x="40" y="1045">Destructive, security and egress operations are refused at levels D1–D2. The centre never sees ticket text or customer data.</text>
+  </g>
+</svg>

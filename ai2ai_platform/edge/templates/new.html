@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block nav %}<span class="who">{{ user.name }}</span>{% endblock %}
+{% block content %}
+<section class="card" id="new-page" data-csrf="{{ csrf }}" data-agent="{{ agent }}" data-level="{{ level }}">
+  <h1>Describe the issue</h1>
+  <form id="ticket-form" class="form">
+    <label for="ticket">What's wrong? (stays on your edge; only the provider's agent reads it)</label>
+    <textarea id="ticket" rows="4" required placeholder="e.g. Nobody can print. Jobs just sit in the queue."></textarea>
+    <label for="level">What may the agent do?</label>
+    <select id="level"><option value="D2">Diagnose and fix (you approve each change)</option><option value="D1">Diagnose only (read-only)</option></select>
+    <button class="primary" type="submit">Prepare Work Order</button>
+  </form>
+  <div id="wo-review" hidden>
+    <h2>Review the Work Order</h2>
+    <dl class="kv" id="wo-fields"></dl>
+    <button class="stamp" id="approve-wo">Approve with passkey</button>
+  </div>
+  <p class="error" id="form-error" role="alert"></p>
+</section>
+{% endblock %}

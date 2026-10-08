@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block nav %}<span class="who">{{ user.name }}</span>{% endblock %}
+{% block content %}
+<div id="job-page" data-csrf="{{ csrf }}" data-job="{{ job_id }}" class="stack">
+  <section class="card">
+    <div class="head-row"><h1 id="job-title">Job</h1><span class="badge" id="job-status"></span></div>
+    <p id="job-ticket"></p>
+    <p class="muted" id="job-meta"></p>
+    <div class="row-form"><button class="stamp" id="kill">Stop this job now</button><button id="undo">Undo last change</button></div>
+  </section>
+  <section class="card approval" id="pending-card" hidden>
+    <h2>Approval needed</h2>
+    <ul class="list" id="pending"></ul>
+  </section>
+  <section class="card"><h2>Changes</h2><ul class="list" id="changes"></ul></section>
+  <section class="card"><h2>Receipt</h2><p id="receipt" class="muted">Issued when the job ends.</p></section>
+  <section class="card"><h2>Audit log</h2><p class="muted" id="chain"></p><ol class="log" id="audit"></ol></section>
+  <p class="error" id="form-error" role="alert"></p>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card narrow" id="enrol-page" data-code="{{ code }}">
+  <h1>Set up your passkey</h1>
+  <p class="muted">Your passkey is how you sign in and how you approve every change an agent wants to make. It stays on your device.</p>
+  <button class="primary" id="passkey-enrol">Create passkey</button>
+  <p class="error" id="form-error" role="alert"></p>
+</section>
+{% endblock %}

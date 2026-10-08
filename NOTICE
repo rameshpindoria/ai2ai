@@ -1,0 +1,14 @@
+AI2AI
+Required Notice: Copyright 2026 Ramesh Pindoria
+
+The code in this repository is licensed under the PolyForm Noncommercial License 1.0.0 (see LICENSE).
+The specification text in spec/ is licensed under Creative Commons Attribution-NonCommercial 4.0 International
+(see spec/LICENSE).
+Commercial use of either needs a separate written licence from the copyright holder.
+
+This repository includes third-party material:
+
+- tests/fixtures/a2a-v1.0.1.proto
+  The A2A protocol schema, copied unmodified from https://github.com/a2aproject/A2A (tag v1.0.1).
+  Copyright The A2A Project Authors. Licensed under the Apache License, Version 2.0.
+  It is used only by the tests, to check this implementation's Agent Cards against the official schema.

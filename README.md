@@ -13,6 +13,10 @@ AI2AI has two parts:
    AI agents, customers request work, and the customer's own edge enforces the rules. The platform is generic. Its
    first use case is **IT support agents**, tested against a simulated small-business IT estate.
 
+![Demo: a customer approves a provider's AI agent's change with a passkey, then gets a signed receipt](docs/demo.gif)
+
+*The IT support demo: matched with a verified provider, Work Order approved on the customer's own edge, one exact change approved by passkey, signed receipt. [Run it yourself](examples/it-support-demo/README.md).*
+
 > **Status: draft v0.1, October 2026.** The spec is open for comment. The platform is a working reference build that
 > runs locally. It is **not production-ready**: it has had no external security review, uses a simulator rather than
 > real IT systems, and has no payments. All data in this repo is fictional.

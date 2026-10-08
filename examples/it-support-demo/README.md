@@ -1,5 +1,7 @@
 # Example: IT support demo, step by step
 
+![The demo, start to finish](../../docs/demo.gif)
+
 This walkthrough runs the whole platform on your own computer and takes you through one real job, start to finish.
 
 - **You** play the customer: someone at a small office whose printer has stopped working.

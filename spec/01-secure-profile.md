@@ -240,7 +240,7 @@ A pass requires zero commitments without HAA, and zero tainted content in system
 
 ## 4. Path to standardisation
 
-1. **Publish openly.** This draft is published for non-commercial use: spec text under CC BY-NC 4.0, and the reference implementation under the PolyForm Noncommercial License 1.0.0. Upstream standardisation through A2A or MCP would need a more permissive licence for the text that is contributed. [I]
+1. **Publish openly.** The spec text is under CC-BY-4.0, so anyone may implement it, including commercially. The reference implementation is under the PolyForm Noncommercial License 1.0.0. [I]
 2. **Reference implementation.** A2A middleware plus an MCP server wrapper (HAA via URL-mode elicitation), alongside the official SDKs. [I]
 3. **Propose upstream.**
    - **A2A:** a community extension first, citing §7.6.4 as the hook, then promotion via the A2A project process. [I]

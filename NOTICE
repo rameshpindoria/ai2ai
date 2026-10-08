@@ -2,9 +2,9 @@ AI2AI
 Required Notice: Copyright 2026 Ramesh Pindoria
 
 The code in this repository is licensed under the PolyForm Noncommercial License 1.0.0 (see LICENSE).
-The specification text in spec/ is licensed under Creative Commons Attribution-NonCommercial 4.0 International
-(see spec/LICENSE).
-Commercial use of either needs a separate written licence from the copyright holder.
+The specification text in spec/ is licensed under Creative Commons Attribution 4.0 International (see spec/LICENSE):
+anyone may use, implement and adapt it, including commercially, with attribution.
+Commercial use of the code needs a separate written licence from the copyright holder.
 
 This repository includes third-party material:
 

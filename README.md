@@ -53,7 +53,7 @@ No configuration can turn these off:
 | [Part 1: Secure Profile](spec/01-secure-profile.md) | Identity and delegation, **Human Approval Attestation (HAA)**, content channels and taint, data classes, message integrity and replay, signed receipts and a transparency log, policy, stop and kill, artifact safety, conformance levels L1 to L3 |
 | [Part 2: Delegated Execution](spec/02-delegated-execution.md) | A provider's agent acting **inside** the requester's environment: threat model, signed Work Orders on OAuth RAR, just-in-time sender-constrained tokens, a requester-side broker that classifies every operation, step-up approval per change, snapshot and rollback, session log, post-job audit, levels D1 to D3 |
 
-Licence: CC BY-NC 4.0 (non-commercial). Requirement IDs (ID-1, HAA-3, DX-X-1...) are stable, so you can reference them in issues.
+Licence: CC-BY-4.0, so anyone may implement it, including commercially, with attribution. Requirement IDs (ID-1, HAA-3, DX-X-1...) are stable, so you can reference them in issues.
 
 ## The reference platform
 
@@ -160,13 +160,11 @@ issues: please don't open a public issue; see [SECURITY.md](SECURITY.md).
 
 ## Licence
 
-**Non-commercial use only.** This is source-available, not open source in the OSI sense.
-
-- Code: [PolyForm Noncommercial 1.0.0](LICENSE)
-- Specification text (`spec/`): [CC BY-NC 4.0](spec/LICENSE)
-
-You may read, run, modify and share it for any non-commercial purpose, including personal projects, research,
-education and evaluation. Commercial use (selling it, offering it as a service, or using it in a business's
-operations) needs a separate licence. Open an issue to ask.
+- **Specification (`spec/`): [CC-BY-4.0](spec/LICENSE).** Free to use, implement and adapt, including in
+  commercial products, as long as you give credit. The spec is meant to be implemented widely.
+- **Code (everything else): [PolyForm Noncommercial 1.0.0](LICENSE).** Source-available, not open source in the
+  OSI sense. You may read, run, modify and share it for any non-commercial purpose, including personal projects,
+  research, education and evaluation. Commercial use of the code (selling it, offering it as a service, or using it
+  in a business's operations) needs a separate licence. Open an issue to ask.
 
 Copyright 2026 Ramesh Pindoria.
